@@ -1,6 +1,6 @@
 
 ![](https://raw.githubusercontent.com/xcode75/xpanel/master/img/x1.png)
-![](https://raw.githubusercontent.com/xcode75/xpanel/master/img/x2.png)
+![](https://raw.githubusercontent.com/xcode75/xpanel/master/img/x3.png)
 
 ## 特征
 
