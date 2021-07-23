@@ -1,0 +1,84 @@
+#compose-mail .compose-mail-form-field {
+  display : -webkit-box;
+  display : -webkit-flex;
+  display : -ms-flexbox;
+  display :         flex;
+  -webkit-box-pack : center;
+  -webkit-justify-content : center;
+  -ms-flex-pack : center;
+          justify-content : center;
+  -webkit-box-align : center;
+  -webkit-align-items : center;
+  -ms-flex-align : center;
+          align-items : center;
+  padding : 0.12rem 1.4rem;
+  border-bottom : 1px solid rgba(34, 41, 47, 0.05);
+}
+
+#compose-mail .compose-mail-form-field .select2-container--open {
+  box-shadow : none;
+}
+
+#compose-mail .compose-mail-form-field .select2-selection--multiple, .email-application #compose-mail .compose-mail-form-field .form-control {
+  border : 0;
+  background-color : transparent;
+}
+
+#compose-mail .compose-mail-form-field .select2-selection--multiple:focus, .email-application #compose-mail .compose-mail-form-field .form-control:focus {
+  box-shadow : none !important;
+  background-color : transparent;
+}
+
+#compose-mail .compose-mail-form-field .select2-selection--multiple {
+  min-height : 42px !important;
+}
+
+#compose-mail .compose-mail-form-field .select2-selection--multiple .select2-selection__rendered li .select2-search__field {
+  margin-top : 10px;
+}
+
+#compose-mail .compose-mail-form-field .select2-selection__choice__remove:before {
+  top : 40%;
+}
+
+#compose-mail .compose-mail-form-field label {
+  margin-bottom : 0;
+  font-size : 1rem;
+}
+
+#compose-mail .ql-editor {
+  min-height : 250px;
+}
+
+#compose-mail .ql-container, .email-application #compose-mail .ql-toolbar {
+  border : none;
+  border-radius : 0;
+  border-bottom : 1px solid #EBE9F1;
+}
+
+#compose-mail .ql-container .ql-picker.ql-expanded .ql-picker-options, .email-application #compose-mail .ql-toolbar .ql-picker.ql-expanded .ql-picker-options {
+  bottom : 100%;
+  top : auto;
+}
+
+#compose-mail .compose-footer-wrapper {
+  padding : 0.8rem 1.4rem;
+  display : -webkit-box;
+  display : -webkit-flex;
+  display : -ms-flexbox;
+  display :         flex;
+  -webkit-box-align : center;
+  -webkit-align-items : center;
+  -ms-flex-align : center;
+          align-items : center;
+  -webkit-box-pack : justify;
+  -webkit-justify-content : space-between;
+  -ms-flex-pack : justify;
+          justify-content : space-between;
+}
+
+@media (max-width: 767.98px) {
+  #compose-mail .ql-editor {
+    min-height : 150px;
+  }
+}
