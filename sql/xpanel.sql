@@ -860,7 +860,9 @@ CREATE TABLE IF NOT EXISTS `notice` (
   `id` int(11) NOT NULL,
   `date` datetime NOT NULL,
   `content` longtext NOT NULL,
-  `markdown` longtext NOT NULL
+  `markdown` longtext NOT NULL,
+  `content_cn` longtext NOT NULL,
+  `markdown_cn` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1063,7 +1065,7 @@ CREATE TABLE IF NOT EXISTS `setup` (
   `status` int(2) NOT NULL DEFAULT '0',
   `url` text,
   `link` text
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `setup`
@@ -1071,7 +1073,7 @@ CREATE TABLE IF NOT EXISTS `setup` (
 
 INSERT INTO `setup` (`id`, `title`, `type`, `content`, `datetime`, `status`, `url`, `link`) VALUES
 (1, 'ClashForAndroid', '1', '', 1626729684, 1, '/download/Clash.apk', 'clash=1'),
-(2, 'AnXray', '1', '', 1627002113, 1, 'https://github.com/XTLS/AnXray/releases', 'config=1'),
+(2, 'AnXray', '1', '', 1627002113, 1, 'https://github.com/XTLS/AnXray/releases', 'anxray=1'),
 (3, 'V2rayNG', '1', '', 1626729707, 1, 'https://github.com/2dust/v2rayNG/releases', 'config=1'),
 (4, 'ClashForWindows', '3', '', 1626729673, 1, '/download/Clash.exe', 'clash=1'),
 (5, 'V2rayN', '3', '', 1626729663, 1, '/download/v2rayN.zip', 'config=1'),
@@ -1080,7 +1082,6 @@ INSERT INTO `setup` (`id`, `title`, `type`, `content`, `datetime`, `status`, `ur
 (8, 'ClashForWindows(Mac)', '4', '', 1626729789, 1, '/download/Clash.dmg', 'clash=1'),
 (9, 'ClashX', '4', '', 1626729810, 1, '/download/ClashX.dmg', 'clash=1'),
 (10, 'Qv2ray', '5', '', 1626729846, 1, '/download/Qv2rayLinux.zip', 'config=1'),
-(11, 'AnyDesk', '7', '', 1626821100, 0, '', '');
 
 -- --------------------------------------------------------
 
@@ -1169,16 +1170,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `afflink` varchar(25) DEFAULT NULL,
   `notification` int(3) NOT NULL DEFAULT '1',
   `ref_by` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `user`
---
-
-INSERT INTO `user` (`id`, `user_name`, `email`, `pass`, `passwd`, `uuid`, `mobile`, `t`, `u`, `d`, `transfer_enable`, `forbidden_ip`, `forbidden_port`, `enable`, `reg_date`, `money`, `expire_time`, `reg_ip`, `node_speedlimit`, `node_connector`, `is_admin`, `last_day_t`, `class`, `expire_in`, `remark`, `node_group`, `reset_day`, `reset_bandwidth`, `telegram_id`, `telegram_name`, `expire_notified`, `traffic_notified`, `afflink`, `notification`, `ref_by`) VALUES
-(1, 'admin', 'admin', 'eedb698f96631bbd8688ed6c4fd29f81f9ae7c439a46e988be602a60586ea9f7', 'sN3fFOpQ', '0b7ae209-a316-30a4-bec6-5924700ce40b', '', 1626729407, 0, 0, 1073741824000, '', NULL, 1, '2021-07-17 17:13:46', '15.00', 0, '127.0.0.1', 0, 3, 1, 0, 1, '2022-07-17 20:50:28', '', 1, 0, '0.00', NULL, NULL, 0, 0, 'lFjK6JmRt0', 0, 1);
-
--- --------------------------------------------------------
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `user_subscribe_log`
@@ -1437,7 +1429,7 @@ ALTER TABLE `email_verify`
 -- AUTO_INCREMENT for table `isocodes`
 --
 ALTER TABLE `isocodes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=254;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `link`
 --
@@ -1482,7 +1474,7 @@ ALTER TABLE `pay_qrcode`
 -- AUTO_INCREMENT for table `rule_list`
 --
 ALTER TABLE `rule_list`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `rule_log`
 --
@@ -1492,7 +1484,7 @@ ALTER TABLE `rule_log`
 -- AUTO_INCREMENT for table `servers`
 --
 ALTER TABLE `servers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `server_info`
 --
@@ -1507,7 +1499,7 @@ ALTER TABLE `server_online_log`
 -- AUTO_INCREMENT for table `setup`
 --
 ALTER TABLE `setup`
-  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `telegram_session`
 --
@@ -1522,7 +1514,7 @@ ALTER TABLE `telegram_tasks`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `user_subscribe_log`
 --
