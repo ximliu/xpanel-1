@@ -30,7 +30,7 @@
 	
 	
 下载程序代码
-git clone https://github.com/xcode75/xpanel.git tmp -b ssp_comp && mv tmp/.git . && rm -rf tmp && git reset --hard
+git clone https://github.com/xcode75/xpanel.git tmp -b master && mv tmp/.git . && rm -rf tmp && git reset --hard
 
 
 xpanel的配置
