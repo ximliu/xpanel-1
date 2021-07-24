@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS `commission` (
   `ref_by` bigint(20) NOT NULL,
   `ref_get` decimal(12,2) NOT NULL,
   `datetime` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -223,7 +223,7 @@ CREATE TABLE IF NOT EXISTS `country` (
   `countrycode` char(3) NOT NULL,
   `countryname` varchar(200) NOT NULL,
   `code` char(2) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `country`
@@ -498,7 +498,7 @@ CREATE TABLE IF NOT EXISTS `coupon` (
   `credit` int(11) NOT NULL,
   `type` bigint(11) NOT NULL,
   `status` int(2) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -1081,7 +1081,7 @@ INSERT INTO `setup` (`id`, `title`, `type`, `content`, `datetime`, `status`, `ur
 (7, 'QuantumultX', '2', '', 1626729765, 1, 'https://apps.apple.com/us/app/quantumult-x/id1443988620', 'quantumultx=1'),
 (8, 'ClashForWindows(Mac)', '4', '', 1626729789, 1, '/download/Clash.dmg', 'clash=1'),
 (9, 'ClashX', '4', '', 1626729810, 1, '/download/ClashX.dmg', 'clash=1'),
-(10, 'Qv2ray', '5', '', 1626729846, 1, '/download/Qv2rayLinux.zip', 'config=1'),
+(10, 'Qv2ray', '5', '', 1626729846, 1, '/download/Qv2rayLinux.zip', 'config=1');
 
 -- --------------------------------------------------------
 
@@ -1099,6 +1099,8 @@ CREATE TABLE IF NOT EXISTS `telegram_session` (
 
 -- --------------------------------------------------------
 
+INSERT INTO `telegram_session` (`id`, `user_id`, `type`, `session_content`, `datetime`) VALUES
+(1, 1, 0, 'TEkQNDnmdRaea7pb', 1627125795);
 --
 -- Table structure for table `telegram_tasks`
 --
