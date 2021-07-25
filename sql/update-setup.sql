@@ -1,0 +1,11 @@
+ALTER TABLE `setup` ADD `icon` text;
+UPDATE `setup` SET icon = 'xpanel xpanel-clash' WHERE id = 1;
+UPDATE `setup` SET icon = 'icomoon icomoon-anxray' WHERE id = 2;
+UPDATE `setup` SET icon = 'icomoon icomoon-v2rayng-new' WHERE id = 3;
+UPDATE `setup` SET icon = 'xpanel xpanel-clash' WHERE id = 4;
+UPDATE `setup` SET icon = 'icomoon icomoon-v2rayn' WHERE id = 5;
+UPDATE `setup` SET icon = 'xpanel xpanel-shadowrocket' WHERE id = 6;
+UPDATE `setup` SET icon = 'xpanel xpanel-quantumultx' WHERE id = 7;
+UPDATE `setup` SET icon = 'xpanel xpanel-clash' WHERE id = 8;
+UPDATE `setup` SET icon = 'xpanel xpanel-clash' WHERE id = 9;
+UPDATE `setup` SET icon = 'icomoon icomoon-qv2ray' WHERE id = 10;
