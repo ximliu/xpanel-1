@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 23, 2021 at 10:29 AM
+-- Generation Time: Jul 27, 2021 at 07:28 AM
 -- Server version: 5.5.68-MariaDB
 -- PHP Version: 7.4.21
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `panel`
+-- Database: `xpanel`
 --
 
 -- --------------------------------------------------------
@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS `commission` (
   `ref_by` bigint(20) NOT NULL,
   `ref_get` decimal(12,2) NOT NULL,
   `datetime` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -96,9 +96,10 @@ INSERT INTO `config` (`name`, `value`) VALUES
 ('aws_secret', ''),
 ('backup_email', ''),
 ('backup_password', ''),
-('baseUrl', 'https://xpanel.gbxcloud.com'),
+('baseUrl', 'https://'),
 ('buy_reset', '1'),
 ('client_id', ''),
+('cnrestrictions', ''),
 ('coinpayments_Private_Key', ''),
 ('coinpayments_Public_Key', ''),
 ('cp_ipn_secret', ''),
@@ -145,7 +146,7 @@ INSERT INTO `config` (`name`, `value`) VALUES
 ('mailgun_domain', ''),
 ('mailgun_key', ''),
 ('mailgun_sender', ''),
-('maintenance', '1'),
+('maintenance', '0'),
 ('merchant_private_key', ''),
 ('mgate_api_url', ''),
 ('mgate_app_id', ''),
@@ -173,7 +174,7 @@ INSERT INTO `config` (`name`, `value`) VALUES
 ('restrictions', ''),
 ('restrict_email', '0'),
 ('restrict_email_list', '@gmail.com,@protonmail.com,@ymail.com,@hotmail.co.uk,@hotmail.com,@qq.com,@outlook.com,@163.com,@126.com,@live.com,@msn.com,@yeah.net,@foxmail.com'),
-('salt', 'Xpanel20210701'),
+('salt', ''),
 ('sendgrid_key', ''),
 ('sendgrid_name', ''),
 ('sendgrid_sender', ''),
@@ -189,7 +190,9 @@ INSERT INTO `config` (`name`, `value`) VALUES
 ('smtp_username', ''),
 ('stripe_key', ''),
 ('stripe_webhook', ''),
-('subUrl', 'https://xpanel.gbxcloud.com/link/'),
+('subUrl', 'https://'),
+('taobaoapi', 'https://ip.taobao.com/outGetIpInfo.php'),
+('taobaoapikey', ''),
 ('tawkchat_api', ''),
 ('tawkchat_id', ''),
 ('telegram_backup', '0'),
@@ -220,266 +223,264 @@ INSERT INTO `config` (`name`, `value`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `country` (
-  `countrycode` char(3) NOT NULL,
-  `countryname` varchar(200) NOT NULL,
-  `code` char(2) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `id` int(11) NOT NULL,
+  `cnname` text NOT NULL,
+  `name` text NOT NULL,
+  `fullname` text NOT NULL,
+  `alpha2` text NOT NULL,
+  `alpha3` text NOT NULL,
+  `code` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=245 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `country`
 --
 
-INSERT INTO `country` (`countrycode`, `countryname`, `code`) VALUES
-('ABW', 'Aruba', 'aw'),
-('AFG', 'Afghanistan', 'af'),
-('AGO', 'Angola', 'ao'),
-('AIA', 'Anguilla', 'ai'),
-('ALA', 'Åland', 'ax'),
-('ALB', 'Albania', 'al'),
-('AND', 'Andorra', 'ad'),
-('ARE', 'United Arab Emirates', 'ae'),
-('ARG', 'Argentina', 'ar'),
-('ARM', 'Armenia', 'am'),
-('ASM', 'American Samoa', 'as'),
-('ATA', 'Antarctica', 'aq'),
-('ATF', 'French Southern Territories', 'tf'),
-('ATG', 'Antigua and Barbuda', 'ag'),
-('AUS', 'Australia', 'au'),
-('AUT', 'Austria', 'at'),
-('AZE', 'Azerbaijan', 'az'),
-('BDI', 'Burundi', 'bi'),
-('BEL', 'Belgium', 'be'),
-('BEN', 'Benin', 'bj'),
-('BES', 'Bonaire', 'bq'),
-('BFA', 'Burkina Faso', 'bf'),
-('BGD', 'Bangladesh', 'bd'),
-('BGR', 'Bulgaria', 'bg'),
-('BHR', 'Bahrain', 'bh'),
-('BHS', 'Bahamas', 'bs'),
-('BIH', 'Bosnia and Herzegovina', 'ba'),
-('BLM', 'Saint Barthélemy', 'bl'),
-('BLR', 'Belarus', 'by'),
-('BLZ', 'Belize', 'bz'),
-('BMU', 'Bermuda', 'bm'),
-('BOL', 'Bolivia', 'bo'),
-('BRA', 'Brazil', 'br'),
-('BRB', 'Barbados', 'bb'),
-('BRN', 'Brunei', 'bn'),
-('BTN', 'Bhutan', 'bt'),
-('BVT', 'Bouvet Island', 'bv'),
-('BWA', 'Botswana', 'bw'),
-('CAF', 'Central African Republic', 'cf'),
-('CAN', 'Canada', 'ca'),
-('CCK', 'Cocos [Keeling] Islands', 'cc'),
-('CHE', 'Switzerland', 'ch'),
-('CHL', 'Chile', 'cl'),
-('CHN', 'China', 'cn'),
-('CIV', 'Ivory Coast', 'ci'),
-('CMR', 'Cameroon', 'cm'),
-('COD', 'Democratic Republic of the Congo', 'cd'),
-('COG', 'Republic of the Congo', 'cg'),
-('COK', 'Cook Islands', 'ck'),
-('COL', 'Colombia', 'co'),
-('COM', 'Comoros', 'km'),
-('CPV', 'Cape Verde', 'cv'),
-('CRI', 'Costa Rica', 'cr'),
-('CUB', 'Cuba', 'cu'),
-('CUW', 'Curacao', 'cw'),
-('CXR', 'Christmas Island', 'cx'),
-('CYM', 'Cayman Islands', 'ky'),
-('CYP', 'Cyprus', 'cy'),
-('CZE', 'Czech Republic', 'cz'),
-('DEU', 'Germany', 'de'),
-('DJI', 'Djibouti', 'dj'),
-('DMA', 'Dominica', 'dm'),
-('DNK', 'Denmark', 'dk'),
-('DOM', 'Dominican Republic', 'do'),
-('DZA', 'Algeria', 'dz'),
-('ECU', 'Ecuador', 'ec'),
-('EGY', 'Egypt', 'eg'),
-('ERI', 'Eritrea', 'er'),
-('ESH', 'Western Sahara', 'eh'),
-('ESP', 'Spain', 'es'),
-('EST', 'Estonia', 'ee'),
-('ETH', 'Ethiopia', 'et'),
-('FIN', 'Finland', 'fi'),
-('FJI', 'Fiji', 'fj'),
-('FLK', 'Falkland Islands', 'fk'),
-('FRA', 'France', 'fr'),
-('FRO', 'Faroe Islands', 'fo'),
-('FSM', 'Micronesia', 'fm'),
-('GAB', 'Gabon', 'ga'),
-('GBR', 'United Kingdom', 'gb'),
-('GEO', 'Georgia', 'ge'),
-('GGY', 'Guernsey', 'gg'),
-('GHA', 'Ghana', 'gh'),
-('GIB', 'Gibraltar', 'gi'),
-('GIN', 'Guinea', 'gn'),
-('GLP', 'Guadeloupe', 'gp'),
-('GMB', 'Gambia', 'gm'),
-('GNB', 'Guinea-Bissau', 'gw'),
-('GNQ', 'Equatorial Guinea', 'gq'),
-('GRC', 'Greece', 'gr'),
-('GRD', 'Grenada', 'gd'),
-('GRL', 'Greenland', 'gl'),
-('GTM', 'Guatemala', 'gt'),
-('GUF', 'French Guiana', 'gf'),
-('GUM', 'Guam', 'gu'),
-('GUY', 'Guyana', 'gy'),
-('HKG', 'Hong Kong', 'hk'),
-('HMD', 'Heard Island and McDonald Islands', 'hm'),
-('HND', 'Honduras', 'hn'),
-('HRV', 'Croatia', 'hr'),
-('HTI', 'Haiti', 'ht'),
-('HUN', 'Hungary', 'hu'),
-('IDN', 'Indonesia', 'id'),
-('IMN', 'Isle of Man', 'im'),
-('IND', 'India', 'in'),
-('IOT', 'British Indian Ocean Territory', 'io'),
-('IRL', 'Ireland', 'ie'),
-('IRN', 'Iran', 'ir'),
-('IRQ', 'Iraq', 'iq'),
-('ISL', 'Iceland', 'is'),
-('ISR', 'Israel', 'il'),
-('ITA', 'Italy', 'it'),
-('JAM', 'Jamaica', 'jm'),
-('JEY', 'Jersey', 'je'),
-('JOR', 'Jordan', 'jo'),
-('JPN', 'Japan', 'jp'),
-('KAZ', 'Kazakhstan', 'kz'),
-('KEN', 'Kenya', 'ke'),
-('KGZ', 'Kyrgyzstan', 'kg'),
-('KHM', 'Cambodia', 'kh'),
-('KIR', 'Kiribati', 'ki'),
-('KNA', 'Saint Kitts and Nevis', 'kn'),
-('KOR', 'South Korea', 'KR'),
-('KWT', 'Kuwait', 'kw'),
-('LAO', 'Laos', 'la'),
-('LBN', 'Lebanon', 'lb'),
-('LBR', 'Liberia', 'lr'),
-('LBY', 'Libya', 'ly'),
-('LCA', 'Saint Lucia', 'lc'),
-('LIE', 'Liechtenstein', 'li'),
-('LKA', 'Sri Lanka', 'lk'),
-('LSO', 'Lesotho', 'ls'),
-('LTU', 'Lithuania', 'lt'),
-('LUX', 'Luxembourg', 'lu'),
-('LVA', 'Latvia', 'lv'),
-('MAC', 'Macao', 'mo'),
-('MAF', 'Saint Martin', 'mf'),
-('MAR', 'Morocco', 'ma'),
-('MCO', 'Monaco', 'mc'),
-('MDA', 'Moldova', 'md'),
-('MDG', 'Madagascar', 'mg'),
-('MDV', 'Maldives', 'mv'),
-('MEX', 'Mexico', 'mx'),
-('MHL', 'Marshall Islands', 'mh'),
-('MKD', 'Macedonia', 'mk'),
-('MLI', 'Mali', 'ml'),
-('MLT', 'Malta', 'mt'),
-('MMR', 'Myanmar [Burma]', 'mm'),
-('MNE', 'Montenegro', 'me'),
-('MNG', 'Mongolia', 'mn'),
-('MNP', 'Northern Mariana Islands', 'mp'),
-('MOZ', 'Mozambique', 'mz'),
-('MRT', 'Mauritania', 'mr'),
-('MSR', 'Montserrat', 'ms'),
-('MTQ', 'Martinique', 'mq'),
-('MUS', 'Mauritius', 'mu'),
-('MWI', 'Malawi', 'mw'),
-('MYS', 'Malaysia', 'my'),
-('MYT', 'Mayotte', 'yt'),
-('NAM', 'Namibia', 'na'),
-('NCL', 'New Caledonia', 'nc'),
-('NER', 'Niger', 'ne'),
-('NFK', 'Norfolk Island', 'nf'),
-('NGA', 'Nigeria', 'ng'),
-('NIC', 'Nicaragua', 'ni'),
-('NIU', 'Niue', 'nu'),
-('NLD', 'Netherlands', 'nl'),
-('NOR', 'Norway', 'no'),
-('NPL', 'Nepal', 'np'),
-('NRU', 'Nauru', 'nr'),
-('NZL', 'New Zealand', 'nz'),
-('OMN', 'Oman', 'om'),
-('PAK', 'Pakistan', 'pk'),
-('PAN', 'Panama', 'pa'),
-('PCN', 'Pitcairn Islands', 'pn'),
-('PER', 'Peru', 'pe'),
-('PHL', 'Philippines', 'ph'),
-('PLW', 'Palau', 'pw'),
-('PNG', 'Papua New Guinea', 'pg'),
-('POL', 'Poland', 'pl'),
-('PRI', 'Puerto Rico', 'pr'),
-('PRK', 'North Korea', 'kp'),
-('PRT', 'Portugal', 'pt'),
-('PRY', 'Paraguay', 'py'),
-('PSE', 'Palestine', 'ps'),
-('PYF', 'French Polynesia', 'pf'),
-('QAT', 'Qatar', 'qa'),
-('REU', 'Réunion', 're'),
-('ROU', 'Romania', 'ro'),
-('RUS', 'Russia', 'ru'),
-('RWA', 'Rwanda', 'rw'),
-('SAU', 'Saudi Arabia', 'sa'),
-('SDN', 'Sudan', 'sd'),
-('SEN', 'Senegal', 'sn'),
-('SGP', 'Singapore', 'sg'),
-('SGS', 'South Georgia and the South Sandwich Islands', 'gs'),
-('SHN', 'Saint Helena', 'sh'),
-('SJM', 'Svalbard and Jan Mayen', 'sj'),
-('SLB', 'Solomon Islands', 'sb'),
-('SLE', 'Sierra Leone', 'sl'),
-('SLV', 'El Salvador', 'sv'),
-('SMR', 'San Marino', 'sm'),
-('SOM', 'Somalia', 'so'),
-('SPM', 'Saint Pierre and Miquelon', 'pm'),
-('SRB', 'Serbia', 'rs'),
-('SSD', 'South Sudan', 'ss'),
-('STP', 'São Tomé and Príncipe', 'st'),
-('SUR', 'Suriname', 'sr'),
-('SVK', 'Slovakia', 'sk'),
-('SVN', 'Slovenia', 'si'),
-('SWE', 'Sweden', 'se'),
-('SWZ', 'Swaziland', 'sz'),
-('SXM', 'Sint Maarten', 'sx'),
-('SYC', 'Seychelles', 'sc'),
-('SYR', 'Syria', 'sy'),
-('TCA', 'Turks and Caicos Islands', 'tc'),
-('TCD', 'Chad', 'td'),
-('TGO', 'Togo', 'tg'),
-('THA', 'Thailand', 'th'),
-('TJK', 'Tajikistan', 'tj'),
-('TKL', 'Tokelau', 'tk'),
-('TKM', 'Turkmenistan', 'tm'),
-('TLS', 'East Timor', 'tl'),
-('TON', 'Tonga', 'to'),
-('TTO', 'Trinidad and Tobago', 'tt'),
-('TUN', 'Tunisia', 'tn'),
-('TUR', 'Turkey', 'tr'),
-('TUV', 'Tuvalu', 'tv'),
-('TWN', 'Taiwan', 'tw'),
-('TZA', 'Tanzania', 'tz'),
-('UGA', 'Uganda', 'ug'),
-('UKR', 'Ukraine', 'ua'),
-('UMI', 'U.S. Minor Outlying Islands', 'um'),
-('URY', 'Uruguay', 'uy'),
-('USA', 'United States', 'us'),
-('UZB', 'Uzbekistan', 'uz'),
-('VAT', 'Vatican City', 'va'),
-('VCT', 'Saint Vincent and the Grenadines', 'vc'),
-('VEN', 'Venezuela', 've'),
-('VGB', 'British Virgin Islands', 'vg'),
-('VIR', 'U.S. Virgin Islands', 'vi'),
-('VNM', 'Vietnam', 'vn'),
-('VUT', 'Vanuatu', 'vu'),
-('WLF', 'Wallis and Futuna', 'wf'),
-('WSM', 'Samoa', 'ws'),
-('XKX', 'Kosovo', 'xk'),
-('YEM', 'Yemen', 'ye'),
-('ZAF', 'South Africa', 'za'),
-('ZMB', 'Zambia', 'zm'),
-('ZWE', 'Zimbabwe', 'zw');
+INSERT INTO `country` (`id`, `cnname`, `name`, `fullname`, `alpha2`, `alpha3`, `code`) VALUES
+(1, '阿富汗', 'Afghanistan', 'the Islamic Republic of Afghanistan', 'AF', 'AFG', 4),
+(2, '奥兰群岛', 'Aland Islands', '', 'AX', 'ALA', 248),
+(3, '阿尔巴尼亚', 'Albania', 'the Republic of Albania', 'AL', 'ALB', 8),
+(4, '阿尔及利亚', 'Algeria', 'the People''s Democratic Republic of Algeria', 'DZ', 'DZA', 12),
+(5, '美属萨摩亚', 'American Samoa', '', 'AS', 'ASM', 16),
+(6, '安道尔', 'Andorra', 'the Principality of Andorra', 'AD', 'AND', 20),
+(7, '安哥拉', 'Angola', 'the Republic of Angola', 'AO', 'AGO', 24),
+(8, '安圭拉', 'Anguilla', '', 'AI', 'AIA', 660),
+(9, '南极洲', 'Antarctica', '', 'AQ', 'ATA', 10),
+(10, '安提瓜和巴布达', 'Antigua and Barbuda', '', 'AG', 'ATG', 28),
+(11, '阿根廷', 'Argentina', 'the Argentine Republic', 'AR', 'ARG', 32),
+(12, '亚美尼亚', 'Armenia', 'the Republic of Armenia', 'AM', 'ARM', 51),
+(13, '阿鲁巴', 'Aruba', '', 'AW', 'ABW', 533),
+(14, '澳大利亚', 'Australia', '', 'AU', 'AUS', 36),
+(15, '奥地利', 'Austria', 'the Republic of Austria', 'AT', 'AUT', 40),
+(16, '阿塞拜疆', 'Azerbaijan', 'the Republic of Azerbaijan', 'AZ', 'AZE', 31),
+(17, '巴哈马', 'Bahamas (The)', 'the Commonwealth of The Bahamas', 'BS', 'BHS', 44),
+(18, '巴林', 'Bahrain', 'the Kingdom of Bahrain', 'BH', 'BHR', 48),
+(19, '孟加拉国', 'Bangladesh', 'the People''s Republic of Bangladesh', 'BD', 'BGD', 50),
+(20, '巴巴多斯', 'Barbados', '', 'BB', 'BRB', 52),
+(21, '白俄罗斯', 'Belarus', 'the Republic of Belarus', 'BY', 'BLR', 112),
+(22, '比利时', 'Belgium', 'the Kingdom of Belgium', 'BE', 'BEL', 56),
+(23, '伯利兹', 'Belize', '', 'BZ', 'BLZ', 84),
+(24, '贝宁', 'Benin', 'the Republic of Benin', 'BJ', 'BEN', 204),
+(25, '百慕大', 'Bermuda', '', 'BM', 'BMU', 60),
+(26, '不丹', 'Bhutan', 'the Kingdom of Bhutan', 'BT', 'BTN', 64),
+(27, '玻利维亚', 'Bolivia', 'the Republic of Bolivia', 'BO', 'BOL', 68),
+(28, '波黑', 'Bosnia and Herzegovina', '', 'BA', 'BIH', 70),
+(29, '博茨瓦纳', 'Botswana', 'the Republic of Botswana', 'BW', 'BWA', 72),
+(30, '布维岛', 'Bouvet Island', '', 'BV', 'BVT', 74),
+(31, '巴西', 'Brazil', 'the Federative Republic of Brazil', 'BR', 'BRA', 76),
+(32, '英属印度洋领地', 'British Indian Ocean Territory (the)', '', 'IO', 'IOT', 86),
+(33, '文莱', 'Brunei Darussalam', '', 'BN', 'BRN', 96),
+(34, '保加利亚', 'Bulgaria', 'the Republic of Bulgaria', 'BG', 'BGR', 100),
+(35, '布基纳法索', 'Burkina Faso', 'Burkina Faso', 'BF', 'BFA', 854),
+(36, '布隆迪', 'Burundi', 'the Republic of Burundi', 'BI', 'BDI', 108),
+(37, '柬埔寨', 'Cambodia', 'the Kingdom of Cambodia', 'KH', 'KHM', 116),
+(38, '喀麦隆', 'Cameroon', 'the Republic of Cameroon', 'CM', 'CMR', 120),
+(39, '加拿大', 'Canada', '', 'CA', 'CAN', 124),
+(40, '佛得角', 'Cape Verde', 'the Republic of Cape Verde', 'CV', 'CPV', 132),
+(41, '开曼群岛', 'Cayman Islands (the)', '', 'KY', 'CYM', 136),
+(42, '中非', 'Central African Republic (the)', 'the Central African Republic', 'CF', 'CAF', 140),
+(43, '乍得', 'Chad', 'the Republic of Chad', 'TD', 'TCD', 148),
+(44, '智利', 'Chile', 'the Republic of Chile', 'CL', 'CHL', 152),
+(45, '中国', 'China', 'the People''s Republic of China', 'CN', 'CHN', 156),
+(46, '圣诞岛', 'Christmas Island', '', 'CX', 'CXR', 162),
+(47, '科科斯（基林）群岛', 'Cocos (Keeling) Islands (the)', '', 'CC', 'CCK', 166),
+(48, '哥伦比亚', 'Colombia', 'the Republic of Colombia', 'CO', 'COL', 170),
+(49, '科摩罗', 'Comoros', 'the Union of the Comoros', 'KM', 'COM', 174),
+(50, '刚果（布）', 'Congo', 'the Republic of the Congo', 'CG', 'COG', 178),
+(51, '刚果（金）', 'Congo (the Democratic Republic of the)', 'the Democratic Republic of the Congo', 'CD', 'COD', 180),
+(52, '库克群岛', 'Cook Islands (the)', '', 'CK', 'COK', 184),
+(53, '哥斯达黎加', 'Costa Rica', 'the Republic of Costa Rica', 'CR', 'CRI', 188),
+(54, '科特迪瓦', 'Côte d''Ivoire', 'the Republic of Côte d''Ivoire', 'CI', 'CIV', 384),
+(55, '克罗地亚', 'Croatia', 'the Republic of Croatia', 'HR', 'HRV', 191),
+(56, '古巴', 'Cuba', 'the Republic of Cuba', 'CU', 'CUB', 192),
+(57, '塞浦路斯', 'Cyprus', 'the Republic of Cyprus', 'CY', 'CYP', 196),
+(58, '捷克', 'Czech Republic (the)', 'the Czech Republic', 'CZ', 'CZE', 203),
+(59, '丹麦', 'Denmark', 'the Kingdom of Denmark', 'DK', 'DNK', 208),
+(60, '吉布提', 'Djibouti', 'the Republic of Djibouti', 'DJ', 'DJI', 262),
+(61, '多米尼克', 'Dominica', 'the Commonwealth of Dominica', 'DM', 'DMA', 212),
+(62, '多米尼加', 'Dominican Republic (the)', 'the Dominican Republic', 'DO', 'DOM', 214),
+(63, '厄瓜多尔', 'Ecuador', 'the Republic of Ecuador', 'EC', 'ECU', 218),
+(64, '埃及', 'Egypt', 'the Arab Republic of Egypt', 'EG', 'EGY', 818),
+(65, '萨尔瓦多', 'El Salvador', 'the Republic of El Salvador', 'SV', 'SLV', 222),
+(66, '赤道几内亚', 'Equatorial Guinea', 'the Republic of Equatorial Guinea', 'GQ', 'GNQ', 226),
+(67, '厄立特里亚', 'Eritrea', '', 'ER', 'ERI', 232),
+(68, '爱沙尼亚', 'Estonia', 'the Republic of Estonia', 'EE', 'EST', 233),
+(69, '埃塞俄比亚', 'Ethiopia', 'the Federal Democratic Republic of Ethiopia', 'ET', 'ETH', 231),
+(70, '福克兰群岛（马尔维纳斯）', 'Falkland Islands (the) [Malvinas]', '', 'FK', 'FLK', 238),
+(71, '法罗群岛', 'Faroe Islands (the)', '', 'FO', 'FRO', 234),
+(72, '斐济', 'Fiji', 'the Republic of the Fiji Islands', 'FJ', 'FJI', 242),
+(73, '芬兰', 'Finland', 'the Republic of Finland', 'FI', 'FIN', 246),
+(74, '法国', 'France', 'the French Republic', 'FR', 'FRA', 250),
+(75, '法属圭亚那', 'French Guiana', '', 'GF', 'GUF', 254),
+(76, '法属波利尼西亚', 'French Polynesia', '', 'PF', 'PYF', 258),
+(77, '法属南部领地', 'French Southern Territories (the)', '', 'TF', 'ATF', 260),
+(78, '加蓬', 'Gabon', 'the Gabonese Republic', 'GA', 'GAB', 266),
+(79, '冈比亚', 'Gambia (The)', 'the Republic of The Gambia', 'GM', 'GMB', 270),
+(80, '格鲁吉亚', 'Georgia', '', 'GE', 'GEO', 268),
+(81, '德国', 'Germany', 'he Federal Republic of Germany', 'DE', 'DEU', 276),
+(82, '加纳', 'Ghana', 'the Republic of Ghana', 'GH', 'GHA', 288),
+(83, '直布罗陀', 'Gibraltar', '', 'GI', 'GIB', 292),
+(84, '希腊', 'Greece', 'the Hellenic Republic', 'GR', 'GRC', 300),
+(85, '格陵兰', 'Greenland', '', 'GL', 'GRL', 304),
+(86, '格林纳达', 'Grenada', '', 'GD', 'GRD', 308),
+(87, '瓜德罗普', 'Guadeloupe', '', 'GP', 'GLP', 312),
+(88, '关岛', 'Guam', '', 'GU', 'GUM', 316),
+(89, '危地马拉', 'Guatemala', 'the Republic of Guatemala', 'GT', 'GTM', 320),
+(90, '格恩西岛', 'Guernsey', '', 'GG', 'GGY', 831),
+(91, '几内亚', 'Guinea', 'the Republic of Guinea', 'GN', 'GIN', 324),
+(92, '几内亚比绍', 'Guinea-Bissau', 'the Republic of Guinea-Bissau', 'GW', 'GNB', 624),
+(93, '圭亚那', 'Guyana', 'the Republic of Guyana', 'GY', 'GUY', 328),
+(94, '海地', 'Haiti', 'the Republic of Haiti', 'HT', 'HTI', 332),
+(95, '赫德岛和麦克唐纳岛', 'Heard Island and McDonald Islands', '', 'HM', 'HMD', 334),
+(96, '梵蒂冈', 'Holy See (the) [Vatican City State]', '', 'VA', 'VAT', 336),
+(97, '洪都拉斯', 'Honduras', 'the Republic of Honduras', 'HN', 'HND', 340),
+(98, '香港', 'Hong Kong', 'the Hong Kong Special Administrative Region of China', 'HK', 'HKG', 344),
+(99, '匈牙利', 'Hungary', 'the Republic of Hungary', 'HU', 'HUN', 348),
+(100, '冰岛', 'Iceland', 'the Republic of Iceland', 'IS', 'ISL', 352),
+(101, '印度', 'India', 'the Republic of India', 'IN', 'IND', 356),
+(102, '印度尼西亚', 'Indonesia', 'the Republic of Indonesia', 'ID', 'IDN', 360),
+(103, '伊朗', 'Iran (the Islamic Republic of)', 'the Islamic Republic of Iran', 'IR', 'IRN', 364),
+(104, '伊拉克', 'Iraq', 'the Republic of Iraq', 'IQ', 'IRQ', 368),
+(105, '爱尔兰', 'Ireland', '', 'IE', 'IRL', 372),
+(106, '英国属地曼岛', 'Isle of Man', '', 'IM', 'IMN', 833),
+(107, '以色列', 'Israel', 'the State of Israel', 'IL', 'ISR', 376),
+(108, '意大利', 'Italy', 'the Republic of Italy', 'IT', 'ITA', 380),
+(109, '牙买加', 'Jamaica', '', 'JM', 'JAM', 388),
+(110, '日本', 'Japan', '', 'JP', 'JPN', 392),
+(111, '泽西岛', 'Jersey', '', 'JE', 'JEY', 832),
+(112, '约旦', 'Jordan', 'the Hashemite Kingdom of Jordan', 'JO', 'JOR', 400),
+(113, '哈萨克斯坦', 'Kazakhstan', 'the Republic of Kazakhstan', 'KZ', 'KAZ', 398),
+(114, '肯尼亚', 'Kenya', 'the Republic of Kenya', 'KE', 'KEN', 404),
+(115, '基里巴斯', 'Kiribati', 'the Republic of Kiribati', 'KI', 'KIR', 296),
+(116, '朝鲜', 'Korea (the Democratic People''s Republic of)', 'the Democratic People''s Republic of Korea', 'KP', 'PRK', 408),
+(117, '韩国', 'Korea (the Republic of)', 'the Republic of Korea', 'KR', 'KOR', 410),
+(118, '科威特', 'Kuwait', 'he State of Kuwait', 'KW', 'KWT', 414),
+(119, '吉尔吉斯斯坦', 'Kyrgyzstan', 'the Kyrgyz Republic', 'KG', 'KGZ', 417),
+(120, '老挝', 'Lao People''s Democratic Republic (the)', 'the Lao People''s Democratic Republic', 'LA', 'LAO', 418),
+(121, '拉脱维亚', 'Latvia', 'the Republic of Latvia', 'LV', 'LVA', 428),
+(122, '黎巴嫩', 'Lebanon', 'the Lebanese Republic', 'LB', 'LBN', 422),
+(123, '莱索托', 'Lesotho', 'the Kingdom of Lesotho', 'LS', 'LSO', 426),
+(124, '利比里亚', 'Liberia', 'the Republic of Liberia', 'LR', 'LBR', 430),
+(125, '利比亚', 'Libyan Arab Jamahiriya (the)', 'the Socialist People''s Libyan Arab Jamahiriya', 'LY', 'LBY', 434),
+(126, '列支敦士登', 'Liechtenstein', 'the Principality of Liechtenstein', 'LI', 'LIE', 438),
+(127, '立陶宛', 'Lithuania', 'the Republic of Lithuania', 'LT', 'LTU', 440),
+(128, '卢森堡', 'Luxembourg', 'the Grand Duchy of Luxembourg', 'LU', 'LUX', 442),
+(129, '澳门', 'Macao', 'Macao Special Administrative Region of China', 'MO', 'MAC', 446),
+(130, '前南马其顿', 'Macedonia (the former Yugoslav Republic of)', 'the former Yugoslav Republic of Macedonia', 'MK', 'MKD', 807),
+(131, '马达加斯加', 'Madagascar', 'the Republic of Madagascar', 'MG', 'MDG', 450),
+(132, '马拉维', 'Malawi', 'the Republic of Malawi', 'MW', 'MWI', 454),
+(133, '马来西亚', 'Malaysia', '', 'MY', 'MYS', 458),
+(134, '马尔代夫', 'Maldives', 'the Republic of Maldives', 'MV', 'MDV', 462),
+(135, '马里', 'Mali', 'the Republic of Mali', 'ML', 'MLI', 466),
+(136, '马耳他', 'Malta', 'the Republic of Malta', 'MT', 'MLT', 470),
+(137, '马绍尔群岛', 'Marshall Islands (the)', 'the Republic of the Marshall Islands', 'MH', 'MHL', 584),
+(138, '马提尼克', 'Martinique', '', 'MQ', 'MTQ', 474),
+(139, '毛利塔尼亚', 'Mauritania', 'the Islamic Republic of Mauritania', 'MR', 'MRT', 478),
+(140, '毛里求斯', 'Mauritius', 'the Republic of Mauritius', 'MU', 'MUS', 480),
+(141, '马约特', 'Mayotte', '', 'YT', 'MYT', 175),
+(142, '墨西哥', 'Mexico', 'the United Mexican States', 'MX', 'MEX', 484),
+(143, '密克罗尼西亚联邦', 'Micronesia (the Federated States of)', 'the Federated States of Micronesia', 'FM', 'FSM', 583),
+(144, '摩尔多瓦', 'Moldova (the Republic of)', 'the Republic of Moldova', 'MD', 'MDA', 498),
+(145, '摩纳哥', 'Monaco', 'the Principality of Monaco', 'MC', 'MCO', 492),
+(146, '蒙古', 'Mongolia', '', 'MN', 'MNG', 496),
+(147, '黑山', 'Montenegro', 'he Republic of Montenegro', 'ME', 'MNE', 499),
+(148, '蒙特塞拉特', 'Montserrat', '', 'MS', 'MSR', 500),
+(149, '摩洛哥', 'Morocco', 'the Kingdom of Morocco', 'MA', 'MAR', 504),
+(150, '莫桑比克', 'Mozambique', 'the Republic of Mozambique', 'MZ', 'MOZ', 508),
+(151, '缅甸', 'Myanmar', 'the Union of Myanmar', 'MM', 'MMR', 104),
+(152, '纳米比亚', 'Namibia', 'the Republic of Namibia', 'NA', 'NAM', 516),
+(153, '瑙鲁', 'Nauru', 'the Republic of Nauru', 'NR', 'NRU', 520),
+(154, '尼泊尔', 'Nepal', 'Nepal', 'NP', 'NPL', 524),
+(155, '荷兰', 'Netherlands (the)', 'the Kingdom of the Netherlands', 'NL', 'NLD', 528),
+(156, '荷属安的列斯', 'Netherlands Antilles (the)', '', 'AN', 'ANT', 530),
+(157, '新喀里多尼亚', 'New Caledonia', '', 'NC', 'NCL', 540),
+(158, '新西兰', 'New Zealand', '', 'NZ', 'NZL', 554),
+(159, '尼加拉瓜', 'Nicaragua', 'the Republic of Nicaragua', 'NI', 'NIC', 558),
+(160, '尼日尔', 'Niger (the)', 'the Republic of the Niger', 'NE', 'NER', 562),
+(161, '尼日利亚', 'Nigeria', 'the Federal Republic of Nigeria', 'NG', 'NGA', 566),
+(162, '纽埃', 'Niue', 'the Republic of Niue', 'NU', 'NIU', 570),
+(163, '诺福克岛', 'Norfolk Island', '', 'NF', 'NFK', 574),
+(164, '北马里亚纳', 'Northern Mariana Islands (the)', 'the Commonwealth of the Northern Mariana Islands', 'MP', 'MNP', 580),
+(165, '挪威', 'Norway', 'the Kingdom of Norway', 'NO', 'NOR', 578),
+(166, '阿曼', 'Oman', 'the Sultanate of Oman', 'OM', 'OMN', 512),
+(167, '巴基斯坦', 'Pakistan', 'the Islamic Republic of Pakistan', 'PK', 'PAK', 586),
+(168, '帕劳', 'Palau', 'the Republic of Palau', 'PW', 'PLW', 585),
+(169, '巴勒斯坦', 'Palestinian Territory (the Occupied)', 'the Occupied Palestinian Territory', 'PS', 'PSE', 275),
+(170, '巴拿马', 'Panama', 'the Republic of Panama', 'PA', 'PAN', 591),
+(171, '巴布亚新几内亚', 'Papua New Guinea', '', 'PG', 'PNG', 598),
+(172, '巴拉圭', 'Paraguay', 'the Republic of Paraguay', 'PY', 'PRY', 600),
+(173, '秘鲁', 'Peru', 'the Republic of Peru', 'PE', 'PER', 604),
+(174, '菲律宾', 'Philippines (the)', 'the Republic of the Philippines', 'PH', 'PHL', 608),
+(175, '皮特凯恩', 'Pitcairn', '', 'PN', 'PCN', 612),
+(176, '波兰', 'Poland', 'the Republic of Poland', 'PL', 'POL', 616),
+(177, '葡萄牙', 'Portugal', 'the Portuguese Republic', 'PT', 'PRT', 620),
+(178, '波多黎各', 'Puerto Rico', '', 'PR', 'PRI', 630),
+(179, '卡塔尔', 'Qatar', 'the State of Qatar', 'QA', 'QAT', 634),
+(180, '留尼汪', 'Réunion', '', 'RE', 'REU', 638),
+(181, '罗马尼亚', 'Romania', '', 'RO', 'ROU', 642),
+(182, '俄罗斯联邦', 'Russian Federation (the)', 'the Russian Federation', 'RU', 'RUS', 643),
+(183, '卢旺达', 'Rwanda', 'the Republic of Rwanda', 'RW', 'RWA', 646),
+(184, '圣赫勒拿', 'Saint Helena', '', 'SH', 'SHN', 654),
+(185, '圣基茨和尼维斯', 'Saint Kitts and Nevis', '', 'KN', 'KNA', 659),
+(186, '圣卢西亚', 'Saint Lucia', '', 'LC', 'LCA', 662),
+(187, '圣皮埃尔和密克隆', 'Saint Pierre and Miquelon', '', 'PM', 'SPM', 666),
+(188, '圣文森特和格林纳丁斯', 'Saint Vincent and the Grenadines', '', 'VC', 'VCT', 670),
+(189, '萨摩亚', 'Samoa', 'the Independent State of Samoa', 'WS', 'WSM', 882),
+(190, '圣马力诺', 'San Marino', 'the Republic of San Marino', 'SM', 'SMR', 674),
+(191, '圣多美和普林西比', 'Sao Tome and Principe', 'the Democratic Republic of Sao Tome and Principe', 'ST', 'STP', 678),
+(192, '沙特阿拉伯', 'Saudi Arabia', 'the Kingdom of Saudi Arabia', 'SA', 'SAU', 682),
+(193, '塞内加尔', 'Senegal', 'the Republic of Senegal', 'SN', 'SEN', 686),
+(194, '塞尔维亚', 'Serbia', 'the Republic of Serbia', 'RS', 'SRB', 688),
+(195, '塞舌尔', 'Seychelles', 'the Republic of Seychelles', 'SC', 'SYC', 690),
+(196, '塞拉利昂', 'Sierra Leone', 'the Republic of Sierra Leone', 'SL', 'SLE', 694),
+(197, '新加坡', 'Singapore', 'the Republic of Singapore', 'SG', 'SGP', 702),
+(198, '斯洛伐克', 'Slovakia', 'the Slovak Republic', 'SK', 'SVK', 703),
+(199, '斯洛文尼亚', 'Slovenia', 'the Republic of Slovenia', 'SI', 'SVN', 705),
+(200, '所罗门群岛', 'Solomon Islands (the)', '', 'SB', 'SLB', 90),
+(201, '索马里', 'Somalia', 'the Somali Republic', 'SO', 'SOM', 706),
+(202, '南非', 'South Africa', 'the Republic of South Africa', 'ZA', 'ZAF', 710),
+(203, '南乔治亚岛和南桑德韦奇岛', 'South Georgia and the South Sandwich Islands', '', 'GS', 'SGS', 239),
+(204, '西班牙', 'Spain', 'the Kingdom of Spain', 'ES', 'ESP', 724),
+(205, '斯里兰卡', 'Sri Lanka', 'the Democratic Socialist Republic of Sri Lanka', 'LK', 'LKA', 144),
+(206, '苏丹', 'Sudan (the)', 'the Republic of the Sudan', 'SD', 'SDN', 736),
+(207, '苏里南', 'Suriname', 'the Republic of Suriname', 'SR', 'SUR', 740),
+(208, '斯瓦尔巴岛和扬马延岛', 'Svalbard and Jan Mayen', '', 'SJ', 'SJM', 744),
+(209, '斯威士兰', 'Swaziland', 'the Kingdom of Swaziland', 'SZ', 'SWZ', 748),
+(210, '瑞典', 'Sweden', 'the Kingdom of Sweden', 'SE', 'SWE', 752),
+(211, '瑞士', 'Switzerland', 'the Swiss Confederation', 'CH', 'CHE', 756),
+(212, '叙利亚', 'Syrian Arab Republic (the)', 'the Syrian Arab Republic', 'SY', 'SYR', 760),
+(213, '台湾', 'Taiwan (Province of China)', '', 'TW', 'TWN', 158),
+(214, '塔吉克斯坦', 'Tajikistan', 'the Republic of Tajikistan', 'TJ', 'TJK', 762),
+(215, '坦桑尼亚', 'Tanzania,United Republic of', 'the United Republic of Tanzania', 'TZ', 'TZA', 834),
+(216, '泰国', 'Thailand', 'the Kingdom of Thailand', 'TH', 'THA', 764),
+(217, '东帝汶', 'Timor-Leste', 'the Democratic Republic of Timor-Leste', 'TL', 'TLS', 626),
+(218, '多哥', 'Togo', 'the Togolese Republic', 'TG', 'TGO', 768),
+(219, '托克劳', 'Tokelau', '', 'TK', 'TKL', 772),
+(220, '汤加', 'Tonga', 'the Kingdom of Tonga', 'TO', 'TON', 776),
+(221, '特立尼达和多巴哥', 'Trinidad and Tobago', 'the Republic of Trinidad and Tobago', 'TT', 'TTO', 780),
+(222, '突尼斯', 'Tunisia', 'the Republic of Tunisia', 'TN', 'TUN', 788),
+(223, '土耳其', 'Turkey', 'the Republic of Turkey', 'TR', 'TUR', 792),
+(224, '土库曼斯坦', 'Turkmenistan', '', 'TM', 'TKM', 795),
+(225, '特克斯和凯科斯群岛', 'Turks and Caicos Islands (the)', '', 'TC', 'TCA', 796),
+(226, '图瓦卢', 'Tuvalu', '', 'TV', 'TUV', 798),
+(227, '乌干达', 'Uganda', 'the Republic of Uganda', 'UG', 'UGA', 800),
+(228, '乌克兰', 'Ukraine', '', 'UA', 'UKR', 804),
+(229, '阿联酋', 'United Arab Emirates (the)', 'the United Arab Emirates', 'AE', 'ARE', 784),
+(230, '英国', 'United Kingdom (the)', 'the United Kingdom of Great Britain and Northern Ireland', 'GB', 'GBR', 826),
+(231, '美国', 'United States (the)', 'the United States of America', 'US', 'USA', 840),
+(232, '美国本土外小岛屿', 'United States Minor Outlying Islands (the)', '', 'UM', 'UMI', 581),
+(233, '乌拉圭', 'Uruguay', 'the Eastern Republic of Uruguay', 'UY', 'URY', 858),
+(234, '乌兹别克斯坦', 'Uzbekistan', 'the Republic of Uzbekistan', 'UZ', 'UZB', 860),
+(235, '瓦努阿图', 'Vanuatu', 'the Republic of Vanuatu', 'VU', 'VUT', 548),
+(236, '委内瑞拉', 'Venezuela', 'the Bolivarian Republic of Venezuela', 'VE', 'VEN', 862),
+(237, '越南', 'Viet Nam', 'the Socialist Republic of Viet Nam', 'VN', 'VNM', 704),
+(238, '英属维尔京群岛', 'Virgin Islands (British)', 'British Virgin Islands (the)', 'VG', 'VGB', 92),
+(239, '美属维尔京群岛', 'Virgin Islands (U.S.)', 'the Virgin Islands of the United States', 'VI', 'VIR', 850),
+(240, '瓦利斯和富图纳', 'Wallis and Futuna', 'Wallis and Futuna Islands', 'WF', 'WLF', 876),
+(241, '西撒哈拉', 'Western Sahara', '', 'EH', 'ESH', 732),
+(242, '也门', 'Yemen', 'the Republic of Yemen', 'YE', 'YEM', 887),
+(243, '赞比亚', 'Zambia', 'the Republic of Zambia', 'ZM', 'ZMB', 894),
+(244, '津巴布韦', 'Zimbabwe', 'the Republic of Zimbabwe', 'ZW', 'ZWE', 716);
 
 -- --------------------------------------------------------
 
@@ -498,7 +499,7 @@ CREATE TABLE IF NOT EXISTS `coupon` (
   `credit` int(11) NOT NULL,
   `type` bigint(11) NOT NULL,
   `status` int(2) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -858,11 +859,11 @@ CREATE TABLE IF NOT EXISTS `mobile_verify` (
 
 CREATE TABLE IF NOT EXISTS `notice` (
   `id` int(11) NOT NULL,
-  `date` datetime NOT NULL,
-  `content` longtext NOT NULL,
-  `markdown` longtext NOT NULL,
-  `content_cn` longtext NOT NULL,
-  `markdown_cn` longtext NOT NULL
+  `date` datetime DEFAULT NULL,
+  `content` longtext,
+  `markdown` longtext,
+  `content_cn` longtext,
+  `markdown_cn` longtext
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1021,7 +1022,7 @@ CREATE TABLE IF NOT EXISTS `servers` (
 --
 
 INSERT INTO `servers` (`id`, `name`, `type`, `server`, `method`, `info`, `status`, `traffic_rate`, `node_class`, `node_speedlimit`, `node_connector`, `node_bandwidth`, `node_heartbeat`, `node_ip`, `node_group`, `online`, `sort`, `mu_only`) VALUES
-(1, 'Expired/流量过期了', 1, '8.8.8;port=443|server=google.com', 'aes-256-gcm', 'United Kingdom', NULL, 0, -1, 0, 0, 0, 0, '8.8.8.8', 0, 0, 0, 1);
+(1, 'Expired/流量过期了', 1, '8.8.8;port=443|server=google.com', 'aes-256-gcm', 'US', NULL, 0, -1, 0, 0, 0, 0, '8.8.8.8', 0, 0, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -1064,24 +1065,25 @@ CREATE TABLE IF NOT EXISTS `setup` (
   `datetime` bigint(25) DEFAULT NULL,
   `status` int(2) NOT NULL DEFAULT '0',
   `url` text,
-  `link` text
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+  `link` text,
+  `icon` text
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `setup`
 --
 
-INSERT INTO `setup` (`id`, `title`, `type`, `content`, `datetime`, `status`, `url`, `link`) VALUES
-(1, 'ClashForAndroid', '1', '', 1626729684, 1, '/download/Clash.apk', 'clash=1'),
-(2, 'AnXray', '1', '', 1627002113, 1, 'https://github.com/XTLS/AnXray/releases', 'anxray=1'),
-(3, 'V2rayNG', '1', '', 1626729707, 1, 'https://github.com/2dust/v2rayNG/releases', 'config=1'),
-(4, 'ClashForWindows', '3', '', 1626729673, 1, '/download/Clash.exe', 'clash=1'),
-(5, 'V2rayN', '3', '', 1626729663, 1, '/download/v2rayN.zip', 'config=1'),
-(6, 'Shadowrocket', '2', '', 1626729742, 1, 'https://itunes.apple.com/us/app/shadowrocket/id932747118?mt=8', 'list=shadowrocket'),
-(7, 'QuantumultX', '2', '', 1626729765, 1, 'https://apps.apple.com/us/app/quantumult-x/id1443988620', 'quantumultx=1'),
-(8, 'ClashForWindows(Mac)', '4', '', 1626729789, 1, '/download/Clash.dmg', 'clash=1'),
-(9, 'ClashX', '4', '', 1626729810, 1, '/download/ClashX.dmg', 'clash=1'),
-(10, 'Qv2ray', '5', '', 1626729846, 1, '/download/Qv2rayLinux.zip', 'config=1');
+INSERT INTO `setup` (`id`, `title`, `type`, `content`, `datetime`, `status`, `url`, `link`, `icon`) VALUES
+(1, 'ClashForAndroid', '1', '', 1626729684, 1, '/download/Clash.apk', 'clash=1', 'xpanel xpanel-clash'),
+(2, 'AnXray', '1', '', 1627002113, 1, 'https://github.com/XTLS/AnXray/releases', 'anxray=1', 'icomoon icomoon-anxray'),
+(3, 'V2rayNG', '1', '', 1626729707, 1, 'https://github.com/2dust/v2rayNG/releases', 'config=1', 'icomoon icomoon-v2rayng-new'),
+(4, 'ClashForWindows', '3', '', 1626729673, 1, '/download/Clash.exe', 'clash=1', 'xpanel xpanel-clash'),
+(5, 'V2rayN', '3', '', 1626729663, 1, '/download/v2rayN.zip', 'config=1', 'icomoon icomoon-v2rayn'),
+(6, 'Shadowrocket', '2', '', 1626729742, 1, 'https://itunes.apple.com/us/app/shadowrocket/id932747118?mt=8', 'list=shadowrocket', 'xpanel xpanel-shadowrocket'),
+(7, 'QuantumultX', '2', '', 1626729765, 1, 'https://apps.apple.com/us/app/quantumult-x/id1443988620', 'quantumultx=1', 'xpanel xpanel-quantumultx'),
+(8, 'ClashForWindows(Mac)', '4', '', 1626729789, 1, '/download/Clash.dmg', 'clash=1', 'xpanel xpanel-clash'),
+(9, 'ClashX', '4', '', 1626729810, 1, '/download/ClashX.dmg', 'clash=1', 'xpanel xpanel-clash'),
+(10, 'Qv2ray', '5', '', 1626729846, 1, '/download/Qv2rayLinux.zip', 'config=1', 'icomoon icomoon-qv2ray');
 
 -- --------------------------------------------------------
 
@@ -1099,8 +1101,6 @@ CREATE TABLE IF NOT EXISTS `telegram_session` (
 
 -- --------------------------------------------------------
 
-INSERT INTO `telegram_session` (`id`, `user_id`, `type`, `session_content`, `datetime`) VALUES
-(1, 1, 0, 'TEkQNDnmdRaea7pb', 1627125795);
 --
 -- Table structure for table `telegram_tasks`
 --
@@ -1172,7 +1172,9 @@ CREATE TABLE IF NOT EXISTS `user` (
   `afflink` varchar(25) DEFAULT NULL,
   `notification` int(3) NOT NULL DEFAULT '1',
   `ref_by` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `user_subscribe_log`
@@ -1252,7 +1254,8 @@ ALTER TABLE `config`
 -- Indexes for table `country`
 --
 ALTER TABLE `country`
-  ADD PRIMARY KEY (`countrycode`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id` (`id`);
 
 --
 -- Indexes for table `coupon`
@@ -1418,6 +1421,11 @@ ALTER TABLE `bought`
 ALTER TABLE `commission`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `country`
+--
+ALTER TABLE `country`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=245;
+--
 -- AUTO_INCREMENT for table `coupon`
 --
 ALTER TABLE `coupon`
@@ -1431,7 +1439,7 @@ ALTER TABLE `email_verify`
 -- AUTO_INCREMENT for table `isocodes`
 --
 ALTER TABLE `isocodes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=254;
 --
 -- AUTO_INCREMENT for table `link`
 --
@@ -1476,7 +1484,7 @@ ALTER TABLE `pay_qrcode`
 -- AUTO_INCREMENT for table `rule_list`
 --
 ALTER TABLE `rule_list`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `rule_log`
 --
@@ -1486,7 +1494,7 @@ ALTER TABLE `rule_log`
 -- AUTO_INCREMENT for table `servers`
 --
 ALTER TABLE `servers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `server_info`
 --
@@ -1501,7 +1509,7 @@ ALTER TABLE `server_online_log`
 -- AUTO_INCREMENT for table `setup`
 --
 ALTER TABLE `setup`
-  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `telegram_session`
 --
