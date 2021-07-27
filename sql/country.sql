@@ -1,7 +1,7 @@
 INSERT INTO `config` (`name`, `value`) VALUES('maintenance', '0'),
 INSERT INTO `config` (`name`, `value`) VALUES('taobaoapi', 'https://ip.taobao.com/outGetIpInfo.php'),
-INSERT INTO `config` (`name`, `value`) VALUES('taobaoapikey', ' '),
-INSERT INTO `config` (`name`, `value`) VALUES('cnrestrictions', ' ');
+INSERT INTO `config` (`name`, `value`) VALUES('taobaoapikey', NULL),
+INSERT INTO `config` (`name`, `value`) VALUES('cnrestrictions', NULL);
 
 DROP TABLE country;
 
