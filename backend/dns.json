@@ -109,9 +109,7 @@
       },
       "https+local://dns.google/dns-query",
       "https+local://cloudflare-dns.com/dns-query",
-      "https://1.1.1.1/dns-query",  
-      "1.1.1.1",
-      "8.8.8.8"
+      "https://1.1.1.1/dns-query"
     ],
     "tag": "dns_inbound"
 }
