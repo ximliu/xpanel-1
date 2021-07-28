@@ -11,18 +11,12 @@
           "geoip:cn"
         ]
       },
-      {
-        "address": "8.8.8.8",
-        "port": 53,
-        "domains": [
-          "geosite:google",
-          "geosite:netflix"
-        ]
-      },
       { 
        "address": "8.8.8.8", 
        "port": 53, 
        "domains": [ 
+          "geosite:google",
+          "geosite:netflix"
           "domain:akadns.net", 
           "domain:akam.net", 
           "domain:akamai.com", 
