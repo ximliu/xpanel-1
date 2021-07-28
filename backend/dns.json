@@ -17,7 +17,7 @@
         "domains": [
           "geosite:google",
           "geosite:netflix"
-	  ]
+        ]
       },
       { 
        "address": "8.8.8.8", 
