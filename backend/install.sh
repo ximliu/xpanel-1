@@ -185,6 +185,7 @@ services:
     volumes:
       - ./config.yml:/etc/Xray/config.yml
       - ./dns.json:/etc/Xray/dns.json
+      - ./rulelist:/etc/Xray/rulelist
       - ./$your_domain.crt:/etc/Xray/$your_domain.crt
       - ./$your_domain.key:/etc/Xray/$your_domain.key
       - ./geoip.dat:/etc/Xray/geoip.dat
@@ -254,6 +255,7 @@ services:
     volumes:
       - ./config.yml:/etc/Xray/config.yml
       - ./dns.json:/etc/Xray/dns.json
+      - ./rulelist:/etc/Xray/rulelist
       - ./geoip.dat:/etc/Xray/geoip.dat
       - ./geosite.dat:/etc/Xray/geosite.dat
     restart: always
