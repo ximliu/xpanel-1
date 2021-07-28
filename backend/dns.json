@@ -9,7 +9,7 @@
         ],
         "expectIPs": [
           "geoip:cn"
-		]
+        ]
       },
       {
         "address": "8.8.8.8",
