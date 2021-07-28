@@ -106,8 +106,15 @@ if [ ! -d /etc/Xray ];then
 	if [ ! -f /etc/Xray/dns.json ];then
 		wget -q https://raw.githubusercontent.com/xcode75/xpanel/master/backend/dns.json -O /etc/Xray/dns.json
 	fi
-	wget https://github.com/Loyalsoldier/v2ray-rules-dat/releases/download/202107272209/geoip.dat -O /etc/Xray/geoip.dat
-	wget https://github.com/Loyalsoldier/v2ray-rules-dat/releases/download/202107272209/geosite.dat -O /etc/Xray/geosite.dat
+	if [ ! -f /etc/Xray/rulelist ];then
+		wget -q https://raw.githubusercontent.com/xcode75/xpanel/master/backend/rulelist -O /etc/Xray/rulelist
+	fi
+	if [ ! -f /etc/Xray/geoip.dat ];then
+	        wget https://github.com/Loyalsoldier/v2ray-rules-dat/releases/download/202107272209/geoip.dat -O /etc/Xray/geoip.dat
+	fi
+	if [ ! -f /etc/Xray/geosite.dat ];then
+	        wget https://github.com/Loyalsoldier/v2ray-rules-dat/releases/download/202107272209/geosite.dat -O /etc/Xray/geosite.dat
+	fi
 fi
 
 if [ ! -f /usr/bin/Xray ];then
