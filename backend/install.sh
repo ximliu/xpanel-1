@@ -106,6 +106,15 @@ if [ ! -d /etc/Xray ];then
 	if [ ! -f /etc/Xray/dns.json ];then
 		wget -q https://raw.githubusercontent.com/xcode75/xpanel/master/backend/dns.json -O /etc/Xray/dns.json
 	fi
+	if [ ! -f /etc/Xray/rulelist ];then
+		wget -q https://raw.githubusercontent.com/xcode75/xpanel/master/backend/rulelist -O /etc/Xray/rulelist
+	fi
+	if [ ! -f /etc/Xray/geoip.dat ];then
+	        wget https://github.com/Loyalsoldier/v2ray-rules-dat/releases/download/202107272209/geoip.dat -O /etc/Xray/geoip.dat
+	fi
+	if [ ! -f /etc/Xray/geosite.dat ];then
+	        wget https://github.com/Loyalsoldier/v2ray-rules-dat/releases/download/202107272209/geosite.dat -O /etc/Xray/geosite.dat
+	fi
 fi
 
 if [ ! -f /usr/bin/Xray ];then
@@ -183,8 +192,11 @@ services:
     volumes:
       - ./config.yml:/etc/Xray/config.yml
       - ./dns.json:/etc/Xray/dns.json
+      - ./rulelist:/etc/Xray/rulelist
       - ./$your_domain.crt:/etc/Xray/$your_domain.crt
       - ./$your_domain.key:/etc/Xray/$your_domain.key
+      - ./geoip.dat:/etc/Xray/geoip.dat
+      - ./geosite.dat:/etc/Xray/geosite.dat
     restart: always
     network_mode: host
 EOF
@@ -250,6 +262,9 @@ services:
     volumes:
       - ./config.yml:/etc/Xray/config.yml
       - ./dns.json:/etc/Xray/dns.json
+      - ./rulelist:/etc/Xray/rulelist
+      - ./geoip.dat:/etc/Xray/geoip.dat
+      - ./geosite.dat:/etc/Xray/geosite.dat
     restart: always
     network_mode: host
 EOF
